@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .codeblocks{
+            border:1px solid black;
+            border-radius: 5px;
+            margin:auto;
+            padding:10px;
+            margin:10px;
+            float: left;
+        }
+
+        .container{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <form action='/pincodewise' method="POST">
+        <input type="text" name="code" placeholder="Pincode">
+        <input type="date" name="userdate">
+        
+        <button type="submit">Go</button>
+    </form>
+    <% if(data.sessions) {  %> 
+        <%  data.sessions.forEach(datum => { %>
+            <% if(datum.date === userdate) { %>
+                <div class="codeblocks">
+                    <table border=1 frame=void rules=rows style="padding: 2px;text-align: left;">
+                        <tr>
+                            <td style="border-right:1px solid black;">center_id</td>
+                            <td style="padding: 5px;"><%= datum.center_id%></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">name</td>
+                            <td style="padding: 5px;"><%= datum.name %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">state_name</td>
+                            <td style="padding: 5px;"><%= datum.state_name %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">district_name</td>
+                            <td style="padding: 5px;"><%= datum.district_name %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">block_name</td>
+                            <td style="padding: 5px;"><%= datum.block_name %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">pincode</td>
+                            <td style="padding: 5px;"><%= datum.pincode %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">from</td>
+                            <td style="padding: 5px;"><%= datum.from %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;"> to</td>
+                            <td style="padding: 5px;"><%= datum.to %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">lat</td>
+                            <td style="padding: 5px;"><%= datum.lat %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">long</td>
+                            <td style="padding: 5px;"><%= datum.long%></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">fee_type</td>
+                            <td style="padding: 5px;"><%= datum.fee_type %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">session_id</td>
+                            <td style="padding: 5px;"><%= datum.session_id %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">date</td>
+                            <td style="padding: 5px;"><%= datum.date %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">available<br>capacity</td>
+                            <td style="padding: 5px;"><%= datum.available_capacity %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">fee</td>
+                            <td style="padding: 5px;"><%= datum.fee %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">min_age<br>limit</td>
+                            <td style="padding: 5px;"><%= datum.min_age_limit %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">vaccine</td>
+                            <td style="padding: 5px;"><%= datum.vaccine %></td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid black;">slots</td>
+                            <td style="padding: 5px;"><% datum.slots.forEach(d => { %>
+                                <span><%= d %></span><br>
+                            <% }) %></td>
+                        </tr>
+                        </table>
+                </div>
+            <% } %>
+        <% }) %>
+    <% } %>
+    </div>
+</body>
+</html>
