@@ -20,12 +20,18 @@ app.get('/', (req, res, next) => {
 app.post('/pincodewise', (req, res, params) => {
     
     let newdate = req.body.userdate.slice(8,10)+'-'+req.body.userdate.slice(5,7)+'-'+req.body.userdate.slice(0,4)
-    fetch('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode='+req.body.code+'&date=05-05-2021')
-        .then(res => res.json())
-        .then(data => {
+    fetch('https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode='+req.body.code+'&date='+newdate)
+    .then(res => {
+	    console.log(res);
+	    return res
+    }) //res.json()
+    .then(data => {
                 // console.log(data.sessions)
                 res.render('homepage',{data:data, userdate:newdate})
-        });
+    })
+    .catch(err => {
+    	console.log(err);
+    })
 })
 
 

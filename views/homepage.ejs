@@ -28,7 +28,8 @@
         
         <button type="submit">Go</button>
     </form>
-    <% if(data.sessions) {  %> 
+    
+    <% if(data.sessions) {  %>
         <%  data.sessions.forEach(datum => { %>
             <% if(datum.date === userdate) { %>
                 <div class="codeblocks">
